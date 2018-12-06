@@ -13,7 +13,7 @@ public class Teacher {
 	
 	@XmlAttribute
 	private int id;
-	@XmlElement(name="course_name")
+	@XmlElement(name="teacher_name")
 	private String name;
 	
 	//constructors

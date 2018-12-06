@@ -13,7 +13,7 @@ public class Course {
 	
 	@XmlAttribute
 	private int id;
-	@XmlElement(name="teacher_name")
+	@XmlElement(name="course_name")
 	private String name;
 	private int credits;
 	private Teacher teacher;
@@ -21,8 +21,7 @@ public class Course {
 	//constructors
 	public Course() {}
 	
-	public Course (int id, String name, 
-			int credits, Teacher teacher) {
+	public Course (int id, String name, int credits, Teacher teacher) {
 		this.id = id;
 		this.name = name;
 		this.credits = credits;
