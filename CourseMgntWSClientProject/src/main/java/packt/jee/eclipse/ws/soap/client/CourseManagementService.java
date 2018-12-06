@@ -1,15 +1,13 @@
 
 package packt.jee.eclipse.ws.soap.client;
 
-import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 
 
 /**
@@ -19,6 +17,7 @@ import javax.xml.ws.ResponseWrapper;
  * 
  */
 @WebService(name = "CourseManagementService", targetNamespace = "http://soap.ws.eclipse.jee.packt/")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     ObjectFactory.class
 })
@@ -28,28 +27,24 @@ public interface CourseManagementService {
     /**
      * 
      * @return
-     *     returns java.util.List<packt.jee.eclipse.ws.soap.client.Course>
+     *     returns packt.jee.eclipse.ws.soap.client.Courses
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getCourses", targetNamespace = "http://soap.ws.eclipse.jee.packt/", className = "packt.jee.eclipse.ws.soap.client.GetCourses")
-    @ResponseWrapper(localName = "getCoursesResponse", targetNamespace = "http://soap.ws.eclipse.jee.packt/", className = "packt.jee.eclipse.ws.soap.client.GetCoursesResponse")
+    @WebResult(partName = "return")
     @Action(input = "http://soap.ws.eclipse.jee.packt/CourseManagementService/getCoursesRequest", output = "http://soap.ws.eclipse.jee.packt/CourseManagementService/getCoursesResponse")
-    public List<Course> getCourses();
+    public Courses getCourses();
 
     /**
      * 
-     * @param arg0
+     * @param courseId
      * @return
      *     returns packt.jee.eclipse.ws.soap.client.Course
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getCourse", targetNamespace = "http://soap.ws.eclipse.jee.packt/", className = "packt.jee.eclipse.ws.soap.client.GetCourse")
-    @ResponseWrapper(localName = "getCourseResponse", targetNamespace = "http://soap.ws.eclipse.jee.packt/", className = "packt.jee.eclipse.ws.soap.client.GetCourseResponse")
+    @WebResult(partName = "return")
     @Action(input = "http://soap.ws.eclipse.jee.packt/CourseManagementService/getCourseRequest", output = "http://soap.ws.eclipse.jee.packt/CourseManagementService/getCourseResponse")
     public Course getCourse(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
+        @WebParam(name = "courseId", partName = "courseId")
+        int courseId);
 
 }
